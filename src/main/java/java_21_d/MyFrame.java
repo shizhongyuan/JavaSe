@@ -1,6 +1,7 @@
 package java_21_d;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 public class MyFrame extends JFrame{
 
@@ -11,6 +12,10 @@ public class MyFrame extends JFrame{
         JButton jb = new JButton("开局");
         JButton jb01 = new JButton("要牌");
         JButton jb02 = new JButton("不要");
+
+        ArrayList<Card> allCard = new ArrayList<Card>();
+        ArrayList<Card> computerCardList = new ArrayList<Card>();
+        ArrayList<Card> playerCardList = new ArrayList<Card>();
 
         public MyFrame(){
             this.setTitle("21点小游戏");
@@ -40,17 +45,36 @@ public class MyFrame extends JFrame{
             this.setVisible(true);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    public void createAllCard() {
+        String[] s = { "方", "梅", "红", "黑" };
+        for (int ys = 0; ys < 4; ys++)
+            for (int shuzi = 1; shuzi <= 13; shuzi++) {
+                Card c = new Card();
+                c.setShuzi(shuzi);
+                c.setHuase(s[ys]);
+                allCard.add(c);
+            }
+    }
+
+    public void sendCard2Computer() {
+
+    }
+
     private class x_click implements ActionListener{
             public void actionPerformed(ActionEvent e) {
+
             }
         }
         private class x1_click implements ActionListener{
             public void actionPerformed(ActionEvent e) {
+
             }
         }
 
         private class x2_click implements ActionListener{
             public void actionPerformed(ActionEvent e) {
+
             }
     }
 }
