@@ -42,7 +42,7 @@ public class Card extends JLabel {
             public void loadImg(boolean isZhengMian) {
                 String s;
                 if (isZhengMian == true) {
-                    s = "img/" + shuzi + huase + ".bmp";
+                    s = "img/"+ huase + shuzi +  ".bmp";
                 } else {
                     s = "img/背景01.bmp";
                 }

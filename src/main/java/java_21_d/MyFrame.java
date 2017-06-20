@@ -2,6 +2,7 @@ package java_21_d;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.*;
 public class MyFrame extends JFrame{
 
@@ -41,12 +42,11 @@ public class MyFrame extends JFrame{
             jb02.setEnabled(false);
             jb02.addActionListener(new x2_click());
             this.add(jb02);
-
             this.setVisible(true);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void createAllCard() {
+    public void createAllCard() {           //生成一副牌
         String[] s = { "方", "梅", "红", "黑" };
         for (int ys = 0; ys < 4; ys++)
             for (int shuzi = 1; shuzi <= 13; shuzi++) {
@@ -57,13 +57,70 @@ public class MyFrame extends JFrame{
             }
     }
 
-    public void sendCard2Computer() {
+     public void sendCard2Computer() {      //发一张牌给电脑
+                Random rand = new Random();
 
+                int index=rand.nextInt(allCard.size());
+                Card c=allCard.get(index);
+
+                computerCardList.add(c);
+                allCard.remove(index);
+            }
+
+     public void sendCard2player(){     //发一张牌给玩家
+                Random rand = new Random();
+
+                int index=rand.nextInt(allCard.size());
+                Card c=allCard.get(index);
+
+                playerCardList.add(c);
+                allCard.remove(index);
+            }
+
+    public void showCards(ArrayList<Card> list,int y,boolean showFirstCard){
+        int x=100;
+        for (int i = 0; i < list.size(); i++) {
+            Card c=list.get(i);
+            c.setSize(71,96);
+            if (i==0 && !showFirstCard) {       // 电脑显示的第一张背面牌
+            c.loadImg(false);
+            }else {
+            c.loadImg(true);
+            }
+            c.setLocation(x,y);
+            x+=81;
+            this.add(c);
+        }
+            this.repaint();
+    }
+
+    public void sumDianShu(ArrayList<Card> list,int y,boolean sumDianShu){
+        int x=100;
+        for (int i = 0; i < list.size(); i++) {
+            Card c=list.get(i);
+            c.setSize(71,96);
+            if (i==0 && !sumDianShu) {
+                c.loadImg(true);
+            }else {
+                c.loadImg(false);
+            }
+            c.setLocation(x,y);
+            x+=81;
+            this.add(c);
+        }
+        this.repaint();
     }
 
     private class x_click implements ActionListener{
             public void actionPerformed(ActionEvent e) {
-
+                jl.setText("游戏开始");
+                jb01.setEnabled(true);
+                jb02.setEnabled(true);
+                createAllCard();        //生成一副牌调用
+                sendCard2Computer();    //发一张牌给电脑调用
+                sendCard2player();      //发一张牌给玩家调用
+                showCards(allCard,80,false);
+                sumDianShu(allCard,250,true);
             }
         }
         private class x1_click implements ActionListener{
