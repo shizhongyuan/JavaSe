@@ -9,6 +9,7 @@ import javax.swing.*;
 
 public class MyFrame extends JFrame {
 
+
     MyFrame thisMyFrame = this;
     JLabel jl = new JLabel("请开局：");
     JLabel jl01 = new JLabel("游戏规则：谁接近21点谁赢" + "（注不可以超过21 点超过21点则爆(输)）");
@@ -114,10 +115,13 @@ public class MyFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             for(int i=0;i<playerCardList.size();i++){
                 Card c = playerCardList.get(i);
+                thisMyFrame.remove(c);
             }
             for(int i=0;i<computerCardList.size();i++){
                 Card c = computerCardList.get(i);
+                thisMyFrame.remove(c);
             }
+            allCard.clear();
             computerCardList.clear();
             playerCardList.clear();
             jl.setText("游戏开始");
@@ -148,32 +152,36 @@ public class MyFrame extends JFrame {
     private class x2_click implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int sum = sumDianShu(computerCardList);
-            while(sum<16){
-                sendCard2Computer();	//发一张牌给电脑调用
-                sum=sumDianShu(computerCardList);
+            while (sum < 16) {
+                sendCard2Computer(); // 发一张牌给电脑调用
+                sum = sumDianShu(computerCardList);
             }
-            showCards(computerCardList,80,true);
+            showCards(computerCardList, 80, true);
 
-            int sum1 = sumDianShu(computerCardList);		// 电脑
-            int sum2 = sumDianShu(playerCardList);			// 玩家
+            int sum1 = sumDianShu(computerCardList); // 电脑
+            int sum2 = sumDianShu(playerCardList); // 玩家
 
-            if(sum1>21 && sum2>21){
+            if (sum1 > 21 && sum2 > 21) {
                 jl.setText("爆啦  再来");
+
             }
-            else if(sum1>21 && sum2<21){
+            else if (sum1 == sum2  ) {
+                jl.setText("平啦");
+            }
+
+            else if (sum1 >= 21 && sum2 <= 21) {
                 jl.setText("你赢啦");
-            }
-            else if(sum1<21 && sum2>21){
+            } else if (sum1 <= 21 && sum2 >= 21) {
                 jl.setText("电脑赢啦");
             }
-            if(sum1<21 && sum2<21){
-                if(sum1>sum2){
+            if (sum1 < 21 && sum2 < 21) {
+                if (sum1 > sum2) {
                     jl.setText("电脑赢啦");
-                }
-                else if(sum1<sum2){
+                } else if (sum1 < sum2) {
                     jl.setText("你赢啦");
                 }
             }
+            jb.setEnabled(true);
         }
     }
 }
