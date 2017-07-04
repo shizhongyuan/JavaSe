@@ -169,12 +169,12 @@ public class MyFrame extends JFrame {
                 jl.setText("平啦");
             }
 
-            else if (sum1 >= 21 && sum2 <= 21) {
+            else if (sum1 > 21 && sum2 <= 21) {
                 jl.setText("你赢啦");
-            } else if (sum1 <= 21 && sum2 >= 21) {
+            } else if (sum1 <= 21 && sum2 > 21) {
                 jl.setText("电脑赢啦");
             }
-            if (sum1 < 21 && sum2 < 21) {
+            if (sum1 <= 21 && sum2 <= 21) {
                 if (sum1 > sum2) {
                     jl.setText("电脑赢啦");
                 } else if (sum1 < sum2) {
