@@ -12,7 +12,7 @@ public class UDP_02 {
     public static void main(String[] args) throws IOException {
         System.out.println("接收端启动---");
         // 使用DatagramSocket对象
-        DatagramSocket ds = new DatagramSocket(10086);
+        DatagramSocket ds = new DatagramSocket(1008611);
         // 创建数据包
         byte[] y = new byte[1024];
         DatagramPacket dp = new DatagramPacket(y,y.length);

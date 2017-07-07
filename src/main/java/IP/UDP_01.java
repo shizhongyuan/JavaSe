@@ -15,7 +15,7 @@ public class UDP_01 {
         String x = "小黄人吃宝吃冰淇淋 嘻嘻";
         byte [] atn = x.getBytes();
         // 使用DatagramPacket对象封装该对象包中
-        DatagramPacket dp = new DatagramPacket(atn,atn.length,InetAddress.getByName("127.0.0.1"),10086);
+        DatagramPacket dp = new DatagramPacket(atn,atn.length,InetAddress.getByName("127.0.0.1"),1008611);
         //  使用该方法发送出去
         ds.send(dp);
         // 关闭资源
